@@ -7,15 +7,33 @@
 //
 
 import UIKit
+import IQKeyboardManager
+#if DEBUG
+    import GDPerformanceView_Swift
+#endif
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // init keyboard manager
+        IQKeyboardManager.shared().isEnabled = true
+        IQKeyboardManager.shared().isEnableAutoToolbar = false
+        // set start controller
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = Storyboards.main
+        window?.makeKeyAndVisible()
+        // init perfomance view
+        #if DEBUG
+            if window != nil {
+                GDPerformanceMonitor.sharedInstance.appVersionHidden = true
+                GDPerformanceMonitor.sharedInstance.deviceVersionHidden = true
+                GDPerformanceMonitor.sharedInstance.startMonitoring()
+            }
+        #endif
         return true
     }
 
@@ -40,7 +58,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

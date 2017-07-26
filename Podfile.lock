@@ -1,0 +1,41 @@
+PODS:
+  - Alamofire (4.5.0)
+  - CRToast (0.0.9)
+  - GDPerformanceView-Swift (1.2.0)
+  - IQKeyboardManager (4.0.10)
+  - JSQMessagesViewController (7.3.5):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
+  - SwiftLint (0.20.1)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - CRToast (~> 0.0.9)
+  - GDPerformanceView-Swift (~> 1.2.0)
+  - IQKeyboardManager
+  - JSQMessagesViewController
+  - RealmSwift
+  - SwiftLint
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  GDPerformanceView-Swift: 5f12f13dcdca4cb87f91ef91ba6b50981421c57f
+  IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
+  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
+  SwiftLint: f60095dc173a3f3ec505bb34f5229c3dfd779a54
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: cca287779e643e873cd4b653483bf8dfbf88e3a5
+
+COCOAPODS: 1.2.1

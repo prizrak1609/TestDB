@@ -1,0 +1,51 @@
+disabled_rules: # rule identifiers to exclude from running
+  - colon
+  - conditional_returns_on_newline
+  - file_length
+  - function_body_length
+  - function_parameter_count
+  - line_length
+  - switch_case_on_newline
+  - type_body_length
+  - file_header
+  - sorted_imports
+  - cyclomatic_complexity
+opt_in_rules: # some rules are only opt-in
+  - implicit_return
+  - fatal_error_message
+  - private_outlet
+  - overridden_super_call
+  - prohibited_super_call
+  - empty_count
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - explicit_init
+  - first_where
+  - force_unwrapping
+  - number_separator
+  - object_literal
+  - operator_usage_whitespace
+  - redundant_nil_coalescing
+  # Find all the available rules by running:
+  # swiftlint rules
+included: # paths to include during linting. `--path` is ignored if present.
+  - "TestDB"
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - .idea
+  - .git
+  - "TestDBTests"
+  - Pods
+
+identifier_name:
+  excluded:
+    - id
+    - x
+    - y
+    - z
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: warning # implicitly
+force_try: warning # explicitly
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
