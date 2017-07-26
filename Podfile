@@ -30,6 +30,9 @@ target 'TestDB' do
 # https://realm.io/docs/swift/latest/#installation
   pod 'RealmSwift'
 
+# https://github.com/Alamofire/AlamofireImage
+  pod 'AlamofireImage', '~> 3.1'
+
   target 'TestDBTests' do
     inherit! :search_paths
     # Pods for testing

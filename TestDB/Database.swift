@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 // disable because when use Realm need to write let realm = try! Realm() or try! write {}
-// swiftlint:disable unwrap
+// swiftlint:disable force_try
 final class Database {
 
     func save(channel: ChannelModel) {

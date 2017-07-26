@@ -19,13 +19,6 @@ final class Server {
 
     fileprivate let database = Database()
 
-    fileprivate let dateFormatter = { () -> DateFormatter in 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM HH:mm"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        return dateFormatter
-    }()
-
     func getChannels(_ completion: @escaping ServerChannelCompletion) {
         completion(.success(database.getChannels()))
         let url = "\(baseURLPath)/api/chat/channels/"
@@ -51,7 +44,7 @@ final class Server {
                     messageModel.channelId = channelModel.id
                     messageModel.isRead = messageJSON["is_read"].boolValue
                     messageModel.text = messageJSON["text"].stringValue
-                    if let date = welf.dateFormatter.date(from: messageJSON["create_date"].stringValue) {
+                    if let date = dateFormatter.date(from: messageJSON["create_date"].stringValue) {
                         messageModel.created = date
                     }
                     let userJSON = messageJSON["sender"]
@@ -88,7 +81,7 @@ final class Server {
                     messageModel.channelId = channel.id
                     messageModel.isRead = messageJSON["is_read"].boolValue
                     messageModel.text = messageJSON["text"].stringValue
-                    if let date = welf.dateFormatter.date(from: messageJSON["create_date"].stringValue) {
+                    if let date = dateFormatter.date(from: messageJSON["create_date"].stringValue) {
                         messageModel.created = date
                     }
                     let userJSON = messageJSON["sender"]

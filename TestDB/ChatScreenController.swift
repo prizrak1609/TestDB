@@ -10,6 +10,8 @@ import UIKit
 
 final class ChatScreenController: UIViewController {
 
+    var model: ChannelModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
