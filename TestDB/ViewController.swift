@@ -130,7 +130,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return [UITableViewRowAction(style: .default, title: NSLocalizedString("Remove", comment: "Main"), handler: { [weak self] _, indexPath in
+        let deleteAction = UITableViewRowAction(style: .default, title: NSLocalizedString("Remove", comment: "Main"), handler: { [weak self] _, indexPath in
             guard let welf = self, let section = Sections(rawValue: indexPath.section) else { return }
             let model: ChannelModel
             switch section {
@@ -138,7 +138,10 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
                 case .read: model = welf.readModels.remove(at: indexPath.row)
             }
             welf.database.delete(channel: model)
-        })]
+            welf.tableView.reloadData()
+        })
+        deleteAction.backgroundColor = #colorLiteral(red: 0.2901960784, green: 0.5647058824, blue: 0.8862745098, alpha: 1)
+        return [deleteAction]
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
