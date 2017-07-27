@@ -29,8 +29,16 @@ final class Database {
 
     func save(message: MessageModel) {
         let realm = try! Realm()
+        let user = message.sender
+        message.sender = nil
         try! realm.write {
-            realm.add(message, update: true)
+            realm.add(message)
+        }
+        if let user = user {
+            try! realm.write {
+                realm.add(user, update: true)
+                message.sender = user
+            }
         }
     }
 
@@ -49,7 +57,7 @@ final class Database {
 
     func getMessages(inChannel channel: ChannelModel) -> [MessageModel] {
         let realm = try! Realm()
-        let predicate = NSPredicate(format: "channelId = %@", channel.id)
+        let predicate = NSPredicate(format: "channelId = %d", channel.id)
         let result = realm.objects(MessageModel.self).filter(predicate)
         return result.map { $0 }
     }

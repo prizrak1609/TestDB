@@ -16,17 +16,32 @@ final class ChannelCell: UITableViewCell {
     @IBOutlet fileprivate weak var timeLabel: UILabel!
     @IBOutlet fileprivate weak var unreadMessagesCountLabel: UILabel!
 
+    static let height: CGFloat = 70
+
     var model: ChannelModel? {
         didSet {
-            guard let model = model else { return }
-            if let url = URL(string: model.lastMessage.sender.photoURLPath) {
+            guard let model = model,
+                let lastMessage = model.lastMessage,
+                let sender = lastMessage.sender
+                else { return }
+            if let url = URL(string: sender.photoURLPath) {
                 avatarImageView.af_setImage(withURL: url)
             }
-            let sender = model.lastMessage.sender
-            nameLabel.text = "\(sender.firstName) \(sender.lastName)"
-            lastMessageLabel.text = model.lastMessage.text
-            timeLabel.text = dateFormatter.string(from: model.lastMessage.created)
-            unreadMessagesCountLabel.isHidden = model.unreadMessagesCount > 0
+            nameLabel.text = sender.fullName
+            lastMessageLabel.text = lastMessage.messageText
+            let calendar = Calendar.current
+            let nowComponents = calendar.dateComponents([.day, .month], from: Date())
+            let messageComponents = calendar.dateComponents([.day, .month], from: lastMessage.created)
+            var prependString = ""
+            if nowComponents.day == messageComponents.day, nowComponents.month == messageComponents.month {
+                dateFormatter.dateFormat = "HH:mm"
+            }
+            if nowComponents.day ?? 0 - 1 == messageComponents.day, nowComponents.month == messageComponents.month {
+                prependString = "Yesterday, "
+                dateFormatter.dateFormat = "HH:mm"
+            }
+            timeLabel.text = prependString + dateFormatter.string(from: lastMessage.created)
+            unreadMessagesCountLabel.isHidden = model.unreadMessagesCount == 0
             unreadMessagesCountLabel.text = "\(model.unreadMessagesCount)"
         }
     }

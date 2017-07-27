@@ -19,11 +19,13 @@ final class Server {
 
     fileprivate let database = Database()
 
+    fileprivate let basicAuthToken = "iostest:iostest2k17!".data(using: .utf8)?.base64EncodedString() ?? ""
+
     func getChannels(_ completion: @escaping ServerChannelCompletion) {
         completion(.success(database.getChannels()))
-        let url = "\(baseURLPath)/api/chat/channels/"
+        let url = "\(baseURLPath)/api/chat/channels/?format=json"
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        Alamofire.request(url).responseJSON { [weak self] response in
+        Alamofire.request(url, headers: ["Authorization" : "Basic \(basicAuthToken)"]).responseJSON { [weak self] response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             guard let welf = self else { return }
             let result = welf.parseJSON(response: response)
@@ -35,26 +37,7 @@ final class Server {
                 let channels = json["channels"].arrayValue
                 var result = [ChannelModel]()
                 for channelJSON in channels {
-                    let channelModel = ChannelModel()
-                    channelModel.id = channelJSON["id"].intValue
-                    channelModel.unreadMessagesCount = channelJSON["unread_messages_count"].intValue
-                    let messageJSON = channelJSON["last_message"]
-                    let messageModel = MessageModel()
-                    channelModel.lastMessage = messageModel
-                    messageModel.channelId = channelModel.id
-                    messageModel.isRead = messageJSON["is_read"].boolValue
-                    messageModel.text = messageJSON["text"].stringValue
-                    if let date = dateFormatter.date(from: messageJSON["create_date"].stringValue) {
-                        messageModel.created = date
-                    }
-                    let userJSON = messageJSON["sender"]
-                    let user = UserModel()
-                    messageModel.sender = user
-                    user.id = userJSON["id"].intValue
-                    user.firstName = userJSON["first_name"].stringValue
-                    user.lastName = userJSON["last_name"].stringValue
-                    user.photoURLPath = userJSON["photo"].stringValue
-                    user.userName = userJSON["username"].stringValue
+                    let channelModel = ChannelModel(json: channelJSON)
                     welf.database.save(channel: channelModel)
                     result.append(channelModel)
                 }
@@ -67,7 +50,7 @@ final class Server {
         let url = "\(baseURLPath)/api/chat/channels/\(channel.id)/messages/"
         completion(.success(database.getMessages(inChannel: channel)))
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        Alamofire.request(url).responseJSON { [weak self] response in
+        Alamofire.request(url, headers: ["Authorization" : "Basic \(basicAuthToken)"]).responseJSON { [weak self] response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             guard let welf = self else { return }
             let result = welf.parseJSON(response: response)
@@ -77,21 +60,8 @@ final class Server {
             }
             if case .success(let json) = result {
                 let messages = json["messages"].arrayValue.map { messageJSON -> MessageModel in
-                    let messageModel = MessageModel()
+                    let messageModel = MessageModel(json: messageJSON)
                     messageModel.channelId = channel.id
-                    messageModel.isRead = messageJSON["is_read"].boolValue
-                    messageModel.text = messageJSON["text"].stringValue
-                    if let date = dateFormatter.date(from: messageJSON["create_date"].stringValue) {
-                        messageModel.created = date
-                    }
-                    let userJSON = messageJSON["sender"]
-                    let userModel = UserModel()
-                    messageModel.sender = userModel
-                    userModel.id = userJSON["id"].intValue
-                    userModel.firstName = userJSON["first_name"].stringValue
-                    userModel.lastName = userJSON["last_name"].stringValue
-                    userModel.photoURLPath = userJSON["photo"].stringValue
-                    userModel.userName = userJSON["username"].stringValue
                     welf.database.save(message: messageModel)
                     return messageModel
                 }

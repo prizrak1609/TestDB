@@ -17,6 +17,7 @@ fileprivate enum Sections : Int {
 
 final class ViewController: UIViewController {
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var switchView: Switch!
 
     fileprivate let server = Server()
     fileprivate let database = Database()
@@ -26,12 +27,41 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        switchView.backgroundColor = #colorLiteral(red: 0.02745098039, green: 0.02745098039, blue: 0.02745098039, alpha: 0.2)
+        switchView.layer.masksToBounds = true
+        switchView.layer.cornerRadius = switchView.frame.height / 2
+        switchView.leftText = "Chat"
+        switchView.rightText = "Live Chat"
+        switchView.rightLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+        switchView.rightBadgeCount = 0
+        switchView.leftBadge.backgroundColor = #colorLiteral(red: 0.3137254902, green: 0.7647058824, blue: 0.8901960784, alpha: 1)
+        switchView.leftBadge.textColor = .white
+        switchView.leftBadgeCount = 2
+        switchView.leftBadge.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize - 1)
+        switchView.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "newChat"), style: .plain, target: nil, action: nil)
+        initTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getData()
+    }
+}
+
+extension ViewController : SwitchDelegate {
+    func switchValueShouldChange(_ currentState: SwitchPosition) -> Bool {
+        return true
+    }
+
+    func switchValueDidChange(_ currentState: SwitchPosition) {
+        if currentState == .left {
+            switchView.leftLabel.textColor = .black
+            switchView.rightLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+        } else {
+            switchView.leftLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+            switchView.rightLabel.textColor = .black
+        }
     }
 }
 
@@ -45,8 +75,10 @@ extension ViewController {
                 return
             }
             if case .success(let models) = result {
+                welf.unreadModels.removeAll(keepingCapacity: true)
+                welf.readModels.removeAll(keepingCapacity: true)
                 for model in models {
-                    if model.lastMessage.isRead {
+                    if let lastMessage = model.lastMessage, lastMessage.isRead {
                         welf.readModels.append(model)
                     } else {
                         welf.unreadModels.append(model)
@@ -63,7 +95,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func initTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 40
+        tableView.rowHeight = ChannelCell.height
         tableView.register(UINib(nibName: cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
     }
 

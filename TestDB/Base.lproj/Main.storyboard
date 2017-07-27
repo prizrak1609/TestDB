@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ma7-M6-Nza">
                                 <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBc-YA-ex7">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBc-YA-ex7" customClass="Switch" customModule="TestDB" customModuleProvider="target">
                                         <rect key="frame" x="26" y="8" width="260" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -56,6 +56,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Chats" id="Q2s-Nm-k3j"/>
                     <connections>
+                        <outlet property="switchView" destination="pBc-YA-ex7" id="mhK-Q3-8OZ"/>
                         <outlet property="tableView" destination="ygN-bn-PU7" id="kjO-EK-ZGm"/>
                     </connections>
                 </viewController>

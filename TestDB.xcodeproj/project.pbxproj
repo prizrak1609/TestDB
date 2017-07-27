@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		38DC8F154E9D63CFE568B36F /* Pods_TestDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FA2E929A29F3C0A4F352E /* Pods_TestDBTests.framework */; };
 		784A3B641F28ACB100456AE1 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784A3B631F28ACB100456AE1 /* Variables.swift */; };
+		784A3B661F28F35000456AE1 /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784A3B651F28F35000456AE1 /* UIImageExt.swift */; };
+		784A3B681F28F43500456AE1 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784A3B671F28F43500456AE1 /* UIViewExt.swift */; };
 		78BED7521F27A04F006035D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BED7511F27A04F006035D6 /* AppDelegate.swift */; };
 		78BED7541F27A04F006035D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BED7531F27A04F006035D6 /* ViewController.swift */; };
 		78BED7571F27A050006035D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BED7551F27A050006035D6 /* Main.storyboard */; };
@@ -26,6 +28,7 @@
 		78DBC4991F2875E500F05A48 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DBC4981F2875E500F05A48 /* ChannelModel.swift */; };
 		78DBC49B1F28768200F05A48 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DBC49A1F28768200F05A48 /* UserModel.swift */; };
 		78DBC49E1F2878B000F05A48 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DBC49D1F2878B000F05A48 /* Database.swift */; };
+		78FDCD151F29C7EC002B3D92 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDCD141F29C7EC002B3D92 /* Switch.swift */; };
 		CA05B56ACB8170DE10D2FDF2 /* Pods_TestDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A191EE0BF37AA239F2B763 /* Pods_TestDB.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,8 @@
 		213813BC935B0CDD6ACE3FE5 /* Pods-TestDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestDBTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestDBTests/Pods-TestDBTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C7FA2E929A29F3C0A4F352E /* Pods_TestDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		784A3B631F28ACB100456AE1 /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		784A3B651F28F35000456AE1 /* UIImageExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
+		784A3B671F28F43500456AE1 /* UIViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		78BED74E1F27A04F006035D6 /* TestDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BED7511F27A04F006035D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78BED7531F27A04F006035D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +69,7 @@
 		78DBC4981F2875E500F05A48 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		78DBC49A1F28768200F05A48 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		78DBC49D1F2878B000F05A48 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		78FDCD141F29C7EC002B3D92 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		A0A191EE0BF37AA239F2B763 /* Pods_TestDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4182167C90FAB8E0C5F6B32 /* Pods-TestDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestDB/Pods-TestDB.release.xcconfig"; sourceTree = "<group>"; };
 		CFA4DC6B2A267779D342A861 /* Pods-TestDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestDB/Pods-TestDB.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				78BED7511F27A04F006035D6 /* AppDelegate.swift */,
+				784A3B671F28F43500456AE1 /* UIViewExt.swift */,
+				784A3B651F28F35000456AE1 /* UIImageExt.swift */,
+				78FDCD141F29C7EC002B3D92 /* Switch.swift */,
 				78BED7581F27A050006035D6 /* Assets.xcassets */,
 				78BED75A1F27A050006035D6 /* LaunchScreen.storyboard */,
 				78BED75D1F27A050006035D6 /* Info.plist */,
@@ -446,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784A3B681F28F43500456AE1 /* UIViewExt.swift in Sources */,
 				78BED77F1F27A0F1006035D6 /* Storyboards.swift in Sources */,
 				78DBC49E1F2878B000F05A48 /* Database.swift in Sources */,
 				78BED7871F27C8B5006035D6 /* ChannelCell.swift in Sources */,
@@ -454,6 +464,8 @@
 				78BED7521F27A04F006035D6 /* AppDelegate.swift in Sources */,
 				78BED7821F27A112006035D6 /* MessageModel.swift in Sources */,
 				78BED77B1F27A0B1006035D6 /* Server.swift in Sources */,
+				78FDCD151F29C7EC002B3D92 /* Switch.swift in Sources */,
+				784A3B661F28F35000456AE1 /* UIImageExt.swift in Sources */,
 				78BED77E1F27A0F1006035D6 /* Functions.swift in Sources */,
 				78DBC4991F2875E500F05A48 /* ChannelModel.swift in Sources */,
 				78DBC49B1F28768200F05A48 /* UserModel.swift in Sources */,
